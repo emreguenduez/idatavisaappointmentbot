@@ -1,7 +1,21 @@
 const puppeteer = require('puppeteer');
+const TelegramBot = require('node-telegram-bot-api');
+
+// Replace with your Telegram bot token and chat ID
+const telegramToken = '6806721859:AAHxE0IeMmVDCV0lqmeB0WaSQhsQf07leZ0';
+const chatId = '-4043195037';
+const bot = new TelegramBot(telegramToken, {polling: true});
+
+async function sendTelegramMessage(message) {
+  try {
+    await bot.sendMessage(chatId, message);
+  } catch (error) {
+    console.error('Error sending message to Telegram:', error);
+  }
+}
 
 async function checkForVisaAppointments() {
-  const browser = await puppeteer.launch({ headless: false }); // Using non-headless mode to visualize the actions
+  const browser = await puppeteer.launch({ headless: true }); // Using non-headless mode to visualize the actions
   const page = await browser.newPage();
 
   try {
@@ -61,11 +75,16 @@ async function checkForVisaAppointments() {
       console.log('Intercepted response from:', url);
       const responseData = await response.json(); // Assuming the response is JSON
       console.log('Response data:', responseData);
-
+      
+      var message;
       // Print the firstAvailableDate field
-      if(responseData && responseData.firstAvailableDate) {
-        console.log('First Available Date:', responseData.firstAvailableDate);
+      if (responseData && responseData.firstAvailableDate) {
+        message = `First Available Date: ${responseData.firstAvailableDate}`;
+        console.log(message);
+        await sendTelegramMessage(message); // Send message via Telegram
       } else {
+        message = `No dates available yet`;
+        await sendTelegramMessage(message); // Send message via Telegram
         console.log('First Available Date not found or empty');
       }
     }
@@ -86,6 +105,6 @@ async function checkForVisaAppointments() {
 
 }
 
-const interval = 10 * 60 * 1000; // 10 minutes
+const interval = 20 * 60 * 1000; // 10 minutes
 
-checkForVisaAppointments();
+setInterval(checkForVisaAppointments, interval);
