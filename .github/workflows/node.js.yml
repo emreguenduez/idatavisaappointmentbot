@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '*/20 * * * *' # Runs every 4 hours, you can adjust this
+    - cron: '*/20 * * * *' # Runs every 20 minutes
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.9] # Set your Node.js version
+        node-version: [14.x] # Ensure this is a valid Node.js version
 
     steps:
     - uses: actions/checkout@v2
@@ -24,5 +24,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    # Add a custom step to run your script
-    - run: script.js
+    - run: node script.js  # Correct command to run your script

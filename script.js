@@ -100,11 +100,11 @@ async function checkForVisaAppointments() {
   } catch (error) {
     console.error('An error occurred:', error);
   } finally {
-
+    await browser.close();
   }
 
 }
 
-const interval = 20 * 60 * 1000; // 10 minutes
+const interval =  60 * 1000; // 10 minutes
 
 setInterval(checkForVisaAppointments, interval);
