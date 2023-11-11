@@ -102,7 +102,6 @@ async function checkForVisaAppointments() {
   } finally {
 
   }
-  await browser.close();
 
 }
 
