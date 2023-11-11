@@ -15,7 +15,12 @@ async function sendTelegramMessage(message) {
 }
 
 async function checkForVisaAppointments() {
-  const browser = await puppeteer.launch({ headless: true }); // Using non-headless mode to visualize the actions
+  
+  const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome',
+    headless: true
+  });
+  
   const page = await browser.newPage();
 
   try {
