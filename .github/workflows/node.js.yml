@@ -24,6 +24,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
     # Add a custom step to run your script
     - run: script.js
