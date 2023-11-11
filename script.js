@@ -105,6 +105,10 @@ async function checkForVisaAppointments() {
 
 }
 
+checkForVisaAppointments();
+
+/*
 const interval =  60 * 1000; // 10 minutes
 
 setInterval(checkForVisaAppointments, interval);
+*/
