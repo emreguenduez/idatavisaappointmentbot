@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x] # Ensure this is a valid Node.js version
+        node-version: [20.9] # Ensure this is a valid Node.js version
 
     steps:
     - uses: actions/checkout@v2
