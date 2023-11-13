@@ -15,12 +15,7 @@ async function sendTelegramMessage(message) {
 }
 
 async function checkForVisaAppointments() {
-  
-  const browser = await puppeteer.launch({
-    executablePath: '/usr/bin/google-chrome',
-    headless: true
-  });
-  
+  const browser = await puppeteer.launch({ headless: true }); // Using non-headless mode to visualize the actions
   const page = await browser.newPage();
 
   try {
@@ -35,16 +30,12 @@ async function checkForVisaAppointments() {
       await page.click(cookieButtonSelector);
     }
   
-    // Select 'Ankara Ofis' from the office dropdown
     await page.select('#office', '2'); // '2' is the value for Ankara Ofis
   
-    // Select 'Diğer' (Other) from the application type dropdown
     await page.select('#getapplicationtype', '7'); // '7' is the value for Diğer (Other)
   
-    // Select 'STANDART' from the office type dropdown
     await page.select('#officetype', '1'); // '1' is the value for STANDART
   
-    // Select '1 Kişi' (1 Person) from the total person dropdown
     await page.select('#totalPerson', '1'); // '1' is the value for 1 Person
   
     // Wait for the token to be available in the DOM
@@ -57,10 +48,8 @@ async function checkForVisaAppointments() {
     });
   
     console.log('CSRF Token:', token);
-  
-  
+
     await page.click('#btnAppCountNext');  
-  
     await page.type('#name1', 'Mustafa Emre');
     await page.type('#surname1', 'Gündüz');
     await page.select('#birthday1', '15'); // Selects day 15
@@ -88,8 +77,6 @@ async function checkForVisaAppointments() {
         console.log(message);
         await sendTelegramMessage(message); // Send message via Telegram
       } else {
-        message = `No dates available yet`;
-        await sendTelegramMessage(message); // Send message via Telegram
         console.log('First Available Date not found or empty');
       }
     }
@@ -107,13 +94,6 @@ async function checkForVisaAppointments() {
   } finally {
     await browser.close();
   }
-
 }
-
-checkForVisaAppointments();
-
-/*
 const interval =  60 * 1000; // 10 minutes
-
 setInterval(checkForVisaAppointments, interval);
-*/
