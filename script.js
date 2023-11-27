@@ -2,8 +2,8 @@ const puppeteer = require('puppeteer');
 const TelegramBot = require('node-telegram-bot-api');
 
 // Replace with your Telegram bot token and chat ID
-const telegramToken = '6806721859:AAHxE0IeMmVDCV0lqmeB0WaSQhsQf07leZ0';
-const chatId = '-4043195037';
+const telegramToken = <YOUR-TELEGRAM-TOKEN>;
+const chatId = <CHAT-ID>;
 const bot = new TelegramBot(telegramToken, {polling: true});
 
 async function sendTelegramMessage(message) {
@@ -50,14 +50,14 @@ async function checkForVisaAppointments() {
     console.log('CSRF Token:', token);
 
     await page.click('#btnAppCountNext');  
-    await page.type('#name1', 'Mustafa Emre');
-    await page.type('#surname1', 'Gündüz');
-    await page.select('#birthday1', '15'); // Selects day 15
-    await page.select('#birthmonth1', '12'); // Selects month December
-    await page.select('#birthyear1', '2000'); // Selects year 2000
-    await page.type('#passport1', 'U23811667');
-    await page.type('#phone1', '5053919102');
-    await page.type('#email1', 'emreguenduez@protonmail.com');
+    await page.type('#name1', <NAME>);
+    await page.type('#surname1', <SURNAME>);
+    await page.select('#birthday1', <BIRTHDAY-DD>); // Selects day 15
+    await page.select('#birthmonth1', <BIRTHDAY-MM>); // Selects month December
+    await page.select('#birthyear1', <BIRTHDAY-YYYY>); // Selects year 2000
+    await page.type('#passport1', <PASSPORT-NUMBER>);
+    await page.type('#phone1', <PHONE-NUMBER>);
+    await page.type('#email1', <EMAIL>);
   
     // Click the 'İleri' button again
     await page.click('#btnAppPersonalNext');
