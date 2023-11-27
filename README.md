@@ -40,3 +40,7 @@ Here are the steps it takes:
 10. The script is set to run at regular intervals, ensuring that it checks for appointments regularly.
     
 This bot significantly streamlines the process of finding an available Schengen visa appointment, reducing the need for constant manual checks and providing timely alerts when slots become available.
+
+## Edit:
+
+I actually got an appointment using the bot. During that time, I was running the code locally on my laptop, but a future improvement could be to set up an AWS Lambda function or something similar so that it runs on the cloud 24/7
