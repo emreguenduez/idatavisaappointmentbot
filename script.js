@@ -95,5 +95,5 @@ async function checkForVisaAppointments() {
     await browser.close();
   }
 }
-const interval =  60 * 1000; // 10 minutes
+const interval =  60 * 1000; // 1 minute
 setInterval(checkForVisaAppointments, interval);
