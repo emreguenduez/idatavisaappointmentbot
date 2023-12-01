@@ -15,28 +15,28 @@ async function sendTelegramMessage(message) {
 }
 
 async function checkForVisaAppointments() {
-  const browser = await puppeteer.launch({ headless: true }); // Using non-headless mode to visualize the actions
+  const browser = await puppeteer.launch({ headless: true }); // Use headless mode since a GUI isnt necessary
   const page = await browser.newPage();
 
   try {
     await page.goto('https://ita-schengen.idata.com.tr/tr/appointment-form', { waitUntil: 'networkidle0' });
-  
-    // Select 'Ankara' from the city dropdown
-    await page.select('#city', '6'); // '6' is the value for Ankara
-  
+
     // Wait for the cookie consent button to appear and click it
     const cookieButtonSelector = '#cookieJvns';
     if (await page.$(cookieButtonSelector) !== null) {
       await page.click(cookieButtonSelector);
     }
+    
+    // Select 'Ankara' from the city dropdown
+    await page.select('#city', '6');
   
-    await page.select('#office', '2'); // '2' is the value for Ankara Ofis
+    await page.select('#office', '2'); // Ankara Ofis
   
-    await page.select('#getapplicationtype', '7'); // '7' is the value for Diğer (Other)
+    await page.select('#getapplicationtype', '7'); // Diğer (Other)
   
-    await page.select('#officetype', '1'); // '1' is the value for STANDART
+    await page.select('#officetype', '1'); // STANDART
   
-    await page.select('#totalPerson', '1'); // '1' is the value for 1 Person
+    await page.select('#totalPerson', '1'); 
   
     // Wait for the token to be available in the DOM
     await page.waitForSelector('input[name="_token"]');
@@ -52,9 +52,9 @@ async function checkForVisaAppointments() {
     await page.click('#btnAppCountNext');  
     await page.type('#name1', <NAME>);
     await page.type('#surname1', <SURNAME>);
-    await page.select('#birthday1', <BIRTHDAY-DD>); // Selects day 15
-    await page.select('#birthmonth1', <BIRTHDAY-MM>); // Selects month December
-    await page.select('#birthyear1', <BIRTHDAY-YYYY>); // Selects year 2000
+    await page.select('#birthday1', <BIRTHDAY-DD>);
+    await page.select('#birthmonth1', <BIRTHDAY-MM>);
+    await page.select('#birthyear1', <BIRTHDAY-YYYY>);
     await page.type('#passport1', <PASSPORT-NUMBER>);
     await page.type('#phone1', <PHONE-NUMBER>);
     await page.type('#email1', <EMAIL>);
