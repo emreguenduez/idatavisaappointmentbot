@@ -1,6 +1,6 @@
 # iData Schengen Visa Appointment Bot
 
-The schengen visa process in Turkey is literal hell. To get a Schengen visa from Italy, you need to do it through an intermediary company called iData. However, every time I logged onto the iData website, hoping for an appointment slot, I was met with the same frustrating message: no appointments available. It felt like a never-ending loop of disappointment. Constantly refreshing the page became a part of my daily routine, and frankly, it was exhausting. After a while, as a software engineer, I thought: can't I automate this? That's when I decided to write this bot (with help from ChatGPT of course).
+The schengen visa process in Turkey is literal hell. To get a Schengen visa from Italy, you need to do it through an intermediary company called iData. However, every time I logged onto the iData website, hoping for an appointment slot, I was met with the same frustrating message: no appointments available. It felt like a never-ending loop of disappointment. Constantly refreshing the page became a part of my daily routine, and frankly, it was exhausting. After a while, as a software engineer, I thought: can't I automate this? That's when I decided to write this bot.
 
 ## The usual process of checking for an appointment
 * You fill in your personal info such as your name, surname, passport number, etc. 
